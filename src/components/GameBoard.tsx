@@ -2196,36 +2196,11 @@ export default function GameBoard({
         </div>
       )}
 
-      {/* LEFT PANEL: Header and Screen Section */}
-      <div className="w-full lg:w-[55%] flex flex-col items-center gap-2">
+      {/* LEFT PANEL: Header and Screen Section - Optimized screen width (65%) for beautiful large PC viewports */}
+      <div className="w-full lg:w-[65%] flex flex-col items-center gap-1 lg:gap-2">
 
-        {/* Sleek Arcade Top Header */}
-      <div className="w-full flex justify-between items-center px-1.5 select-none">
-        <div className="flex items-center gap-1.5">
-          <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_#10B981]" />
-          <span className="text-[10px] sm:text-xs font-black text-slate-700 dark:text-slate-200 tracking-wider">SLINKY ARCADE</span>
-        </div>
-        
-        {/* Unified Bezel HUD Bar (Inside Arcade cabinet header, outside the active canvas to prevent any overlaps!) */}
-        <div className="flex items-center gap-4">
-          {comboCount > 1 && (
-            <span className="text-[10px] font-black text-pink-600 dark:text-pink-400 animate-bounce bg-pink-500/10 px-2 py-0.5 rounded border border-pink-500/20">
-              COMBO x{comboCount}!
-            </span>
-          )}
-          {isPlaying && (
-            <button
-              onClick={() => { playClickSound(); setIsPaused(!isPaused); }}
-              className="px-2.5 py-1 bg-amber-400 hover:bg-amber-500 border border-amber-600 rounded-lg text-[10px] sm:text-xs font-black shadow-[0_1.5px_0_#D97706] text-slate-950 transition-all active:translate-y-0.5 cursor-pointer z-20"
-            >
-              ⚙️ MENU
-            </button>
-          )}
-        </div>
-      </div>
-
-      {/* 1. Screen Section (Unified dark arcade bezel) - Slimmed padding by 75% to maximize the playable screen size */}
-      <div className="w-full bg-slate-950 p-0.5 sm:p-1 rounded-2xl border-4 border-slate-900 flex flex-col items-center shadow-inner relative overflow-hidden">
+      {/* 1. Screen Section (Unified dark arcade bezel) - Sharp corners with no wasted padding */}
+      <div className="w-full bg-slate-950 p-0.5 sm:p-1 rounded-none border-4 border-slate-900 flex flex-col items-center shadow-inner relative overflow-hidden">
         
         {/* ACTIVE SCREEN EFFECTS INDICATOR */}
         <div className="absolute top-2 left-2 z-10 flex flex-col gap-1 pointer-events-none">
@@ -2246,14 +2221,30 @@ export default function GameBoard({
           )}
         </div>
 
-        {/* Grid Canvas with doubled resolution (800x800) for pristine sharp vectors */}
-        <div className="w-full aspect-square overflow-hidden rounded-xl border-2 border-slate-900 relative">
+        {/* Grid Canvas with doubled resolution (800x800) for pristine sharp vectors, completely sharp rounded-none corners */}
+        <div className="w-full aspect-square overflow-hidden rounded-none border-2 border-slate-900 relative">
           <canvas
             ref={canvasRef}
             width={800}
             height={800}
             className="cursor-none shadow-inner w-full h-full aspect-square bg-slate-950"
           />
+
+          {/* FLOATING ACTION MENU BUTTON - Replaces old header to save vertical space! */}
+          {isPlaying && (
+            <button
+              onClick={() => { playClickSound(); setIsPaused(!isPaused); }}
+              className="absolute top-2 right-2 bg-amber-400 hover:bg-amber-500 border border-amber-600 rounded px-2.5 py-1 text-[9px] sm:text-xs font-black shadow-[0_1.5px_0_#D97706] text-slate-950 tracking-wider transition-all active:translate-y-0.5 cursor-pointer z-25"
+            >
+              ⚙️ MENU
+            </button>
+          )}
+
+          {comboCount > 1 && (
+            <span className="absolute top-2 right-16 text-[9px] sm:text-xs font-black text-pink-500 bg-pink-500/10 px-1.5 py-0.5 rounded border border-pink-500/20 animate-bounce z-20">
+              COMBO x{comboCount}!
+            </span>
+          )}
 
           {/* LIZARD PAUSE OVERLAY - Transparent, elegant, showing ruka hua game */}
           {isLizardPaused && (
@@ -2327,8 +2318,8 @@ export default function GameBoard({
       {/* LEFT PANEL END */}
       </div>
 
-      {/* RIGHT PANEL: Dpad & Controller Section */}
-      <div className="w-full lg:w-[45%] flex flex-col justify-center items-center pt-1.5 lg:pt-0 border-t-2 lg:border-t-0 lg:border-l-2 border-slate-300 dark:border-slate-700/50 px-2 lg:px-4">
+      {/* RIGHT PANEL: Dpad & Controller Section - PC width optimized (35%) */}
+      <div className="w-full lg:w-[35%] flex flex-col justify-center items-center pt-1.5 lg:pt-0 border-t-2 lg:border-t-0 lg:border-l-2 border-slate-300 dark:border-slate-700/50 px-2 lg:px-4">
         <Dpad
           currentDirection={direction}
           onChangeDirection={(dir) => {
