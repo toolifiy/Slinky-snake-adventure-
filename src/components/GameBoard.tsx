@@ -1995,7 +1995,7 @@ export default function GameBoard({
   };
 
   return (
-    <div className="flex flex-col lg:flex-row items-center lg:items-stretch w-full max-w-[650px] lg:max-w-[950px] bg-slate-200 dark:bg-slate-800 p-0.5 sm:p-1.5 lg:p-3 rounded-none border-4 border-amber-400 dark:border-amber-500 shadow-[0_24px_50px_rgba(0,0,0,0.35)] gap-2 lg:gap-4 mx-auto relative overflow-hidden">
+    <div className="flex flex-col lg:flex-row items-center lg:items-stretch w-full max-w-[650px] lg:max-w-[1100px] bg-slate-200 dark:bg-slate-800 p-0.5 sm:p-1.5 lg:p-4 rounded-none border-4 border-amber-400 dark:border-amber-500 shadow-[0_24px_50px_rgba(0,0,0,0.35)] gap-1 lg:gap-6 mx-auto relative overflow-hidden">
       
       {/* MID-GAME OPTIONS OVERLAY MENU WHEN PAUSED - Now full translucent floating card styled! */}
       {isPaused && (
