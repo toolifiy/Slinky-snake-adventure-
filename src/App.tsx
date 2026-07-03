@@ -277,7 +277,7 @@ export default function App() {
   };
 
   // Immersive gameplay layout when playing is active (scroll-free viewport focused arcade setup)
-  // Reduced outer padding by 75% (changed p-2.5 to p-0.5) as requested!
+  // Outer padding is completely removed on mobile (p-0) and kept on desktop (lg:p-4) to maximize viewport usage!
   if (isPlaying) {
     return (
       <div className="fixed inset-0 h-screen w-screen overflow-hidden bg-gradient-to-b from-slate-950 via-indigo-950 to-slate-950 flex flex-col items-center justify-center p-0 lg:p-4 z-50">
