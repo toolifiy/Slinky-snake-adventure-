@@ -7,7 +7,6 @@ import SkinSelector from './components/SkinSelector';
 import SnakeHeadPreview from './components/SnakeHeadPreview';
 import PowerUpGuide from './components/PowerUpGuide';
 import AchievementsBox from './components/AchievementsBox';
-import AdsterraBanner from './components/AdsterraBanner';
 import { playClickSound, playAchievementSound, setSoundEnabled, getSoundEnabled, setSoundVolume, getSoundVolume } from './utils/audio';
 
 export default function App() {
@@ -542,10 +541,6 @@ export default function App() {
               If you have any questions regarding this Privacy Policy, you can reach out to us using the "Contact Us" page.
             </div>
 
-            <div className="w-full flex justify-center py-4">
-              <AdsterraBanner adKey="4923cc907dacca0d26355c8f49f110ed" width={160} height={600} />
-            </div>
-
             <div className="flex justify-center pt-2">
               <button
                 onClick={() => { playClickSound(); setActivePage('HOME'); }}
@@ -647,10 +642,6 @@ export default function App() {
               Please respect our Terms of Use to ensure the arcade gaming community remains fair and competitive.
             </div>
 
-            <div className="w-full flex justify-center py-4">
-              <AdsterraBanner adKey="4923cc907dacca0d26355c8f49f110ed" width={160} height={600} />
-            </div>
-
             <div className="flex justify-center pt-2">
               <button
                 onClick={() => { playClickSound(); setActivePage('HOME'); }}
@@ -702,9 +693,6 @@ export default function App() {
 
         {/* CONTENT COLUMN */}
         <main className="flex-grow max-w-5xl w-full mx-auto px-4 py-8 sm:px-6 md:px-8">
-          <div className="w-full flex justify-center mb-6">
-            <AdsterraBanner adKey="4923cc907dacca0d26355c8f49f110ed" width={160} height={600} />
-          </div>
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
             
             {/* INSTAGRAM & SOCIAL CHANNEL CARD (4 cols) */}
@@ -860,9 +848,6 @@ export default function App() {
             </div>
 
           </div>
-          <div className="w-full flex justify-center mt-6">
-            <AdsterraBanner adKey="4923cc907dacca0d26355c8f49f110ed" width={160} height={600} />
-          </div>
         </main>
       </div>
     );
@@ -880,7 +865,7 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-teal-50 via-amber-50 to-emerald-100 dark:from-slate-900 dark:via-indigo-950 dark:to-slate-950 font-sans p-3 md:p-4 pt-1 transition-colors duration-300">
+    <div className="min-h-screen bg-gradient-to-b from-teal-50 via-amber-50 to-emerald-100 dark:from-slate-900 dark:via-indigo-950 dark:to-slate-950 font-sans p-3 md:p-4 pt-1 transition-colors duration-300 relative">
       
       {/* 1. Header controls (Hamburger menu left, Sound button right - scaled down 30% and pushed high up) */}
       <div className="max-w-6xl mx-auto flex justify-between items-center mb-1.5 pt-0.5 px-1 relative z-30">
@@ -1204,13 +1189,8 @@ export default function App() {
 
         </div>
 
-        {/* Small Mobile Banner Ad */}
-        <div className="w-full flex justify-center py-2">
-          <AdsterraBanner adKey="db3a79e12aa161ce3f5a8e4e34162c60" width={468} height={60} />
-        </div>
-
         {/* ROW 2: SCORES, POWERUP GUIDES & ACHIEVEMENTS (At the bottom) */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-6 items-start mt-4 border-t border-slate-300/40 dark:border-slate-800/40 pt-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start mt-4 border-t border-slate-300/40 dark:border-slate-800/40 pt-6">
           
           {/* 1. Score Center */}
           <div className="bg-amber-100/80 dark:bg-slate-800/80 p-5 rounded-3xl border-4 border-amber-400 shadow-md flex flex-col gap-3 h-full justify-between md:col-span-1">
@@ -1239,19 +1219,9 @@ export default function App() {
             </div>
           </div>
 
-          {/* Medium Ad Box 1 */}
-          <div className="flex justify-center items-center h-full py-1 md:col-span-1">
-            <AdsterraBanner adKey="bb6586562ba9e600bfde4e38d14ba022" width={160} height={300} />
-          </div>
-
           {/* 2. Power-Up Items Guide */}
           <div className="md:col-span-1">
             <PowerUpGuide />
-          </div>
-
-          {/* Medium Ad Box 2 */}
-          <div className="flex justify-center items-center h-full py-1 md:col-span-1">
-            <AdsterraBanner adKey="c5bdb30469010828e32529cd44eafd76" width={160} height={300} />
           </div>
 
           {/* 3. Achievements list */}
@@ -1269,108 +1239,92 @@ export default function App() {
           🐍 Slinky Snake Adventures 2D — Ultimate Arcade Gaming Guide
         </h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 text-sm leading-relaxed">
-          {/* Left Column */}
-          <div className="flex flex-col gap-6">
-            {/* Top of Left Column Ad */}
-            <AdsterraBanner adKey="4923cc907dacca0d26355c8f49f110ed" width={160} height={600} />
-
-            <div>
-              <h3 className="text-lg font-extrabold text-violet-600 dark:text-violet-400 mb-2 flex items-center gap-2">
-                🎮 1. Slinky Snake Adventures 2D - A Brand New Modern Arcade Era
-              </h3>
-              <p>
-                Slinky Snake Adventures 2D is not just another standard snake game; it is a highly modernized, elegant, and thrilling evolution of the classic Nokia snake game. Born in the 1970s, this legendary arcade gameplay has been fully reimagined using cutting-edge web technologies including React, Vite, Tailwind CSS, and the HTML5 Canvas API. We have designed this game to be deeply engaging, challenging, and relaxing for players of all ages. You will experience pixel-perfect smooth visuals paired with a real-time Web Audio synthesizer that generates authentic analog synthesizer sound effects dynamically at every slither and turn.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-lg font-extrabold text-violet-600 dark:text-violet-400 mb-2 flex items-center gap-2">
-                🌍 2. A Journey Through Two Exciting Game Modes
-              </h3>
-              <p>
-                Our website provides players with two distinctly engineered gameplay experiences to suit their style:
-              </p>
-              <ul className="list-disc list-inside ml-2 mt-1 flex flex-col gap-1.5">
-                <li>
-                  <strong className="text-slate-800 dark:text-slate-100">Classic Mode:</strong> An endless, pure highscore challenge with no boundaries. As you consume succulent fruits, your length and score grow indefinitely. Can you survive long enough to shatter your own legendary highscore? This mode is a true test of focus, hand-eye coordination, and swift reaction times.
-                </li>
-                <li>
-                  <strong className="text-slate-800 dark:text-slate-100">Level Mode:</strong> Embark on an adventurous campaign across {LEVEL_CONFIGS.length} magical worlds. Each world introduces unique obstacle configurations, increasing complexity, and a required target score to successfully enter the next gate. Every single level features its own gorgeous color theme and atmospheric background.
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="text-lg font-extrabold text-violet-600 dark:text-violet-400 mb-2 flex items-center gap-2">
-                🍓 3. A Feast of 10+ Delicious Fruits & Super-Foods
-              </h3>
-              <p>
-                Instead of traditional simple dots, Slinky Snake features a rich, colorful menu of over 10 varieties of juicy fruits and magical powerups. Each edible item possesses a specific point value, a customized particle explosion effect, and a physical/score impact on the game:
-              </p>
-              <ul className="list-disc list-inside ml-2 mt-1 flex flex-col gap-1">
-                <li><strong>Juicy Apple:</strong> +10 points - Classic and reliable food.</li>
-                <li><strong>Slippery Banana:</strong> +12 points - Easy to consume and highly satisfying.</li>
-                <li><strong>Purple Grape:</strong> +15 points - Temporarily slows down the snake for 6 seconds to let you navigate complex narrow turns safely.</li>
-                <li><strong>Spicy Chili:</strong> +15 points - Increases the snake speed and doubles your combo multiplier score for 8 seconds!</li>
-                <li><strong>Golden Pineapple:</strong> +18 points - Explodes with a tropical particle burst.</li>
-                <li><strong>Hard Coconut:</strong> +20 points - Crunchy shockwave that gently shakes the game board.</li>
-                <li><strong>Golden Star:</strong> +25 points - Sparkling visual trail and triggers a double multiplier.</li>
-                <li><strong>Watermelon:</strong> +30 points - Explosive juice splatter with intense screen vibration!</li>
-                <li><strong>Rainbow Cake:</strong> +40 points - Immediately appends 2 extra segments to your length.</li>
-                <li><strong>Dragon Fruit:</strong> +50 points - Extremely rare mystical food that releases magical purple glow sparks.</li>
-                <li><strong>Magical Blue Booster:</strong> +50 points - Laboratory elixir that grants high velocity decaying slowly over 10 seconds.</li>
-              </ul>
-            </div>
-
-            {/* Bottom of Left Column Ad */}
-            <AdsterraBanner adKey="4923cc907dacca0d26355c8f49f110ed" width={160} height={600} />
+        <div className="flex flex-col gap-8 text-sm leading-relaxed">
+          
+          <div>
+            <h3 className="text-lg font-extrabold text-violet-600 dark:text-violet-400 mb-2 flex items-center gap-2">
+              🎮 1. Slinky Snake Adventures 2D - A Brand New Modern Arcade Era
+            </h3>
+            <p>
+              Slinky Snake Adventures 2D is not just another standard snake game; it is a highly modernized, elegant, and thrilling evolution of the classic Nokia snake game. Born in the 1970s, this legendary arcade gameplay has been fully reimagined using cutting-edge web technologies including React, Vite, Tailwind CSS, and the HTML5 Canvas API. We have designed this game to be deeply engaging, challenging, and relaxing for players of all ages. You will experience pixel-perfect smooth visuals paired with a real-time Web Audio synthesizer that generates authentic analog synthesizer sound effects dynamically at every slither and turn.
+            </p>
           </div>
 
-          {/* Right Column */}
-          <div className="flex flex-col gap-6">
-            {/* Top of Right Column Ad */}
-            <AdsterraBanner adKey="4923cc907dacca0d26355c8f49f110ed" width={160} height={600} />
-
-            <div>
-              <h3 className="text-lg font-extrabold text-violet-600 dark:text-violet-400 mb-2 flex items-center gap-2">
-                ⚡ 4. Dynamic Combo Multipliers & Musical Tones
-              </h3>
-              <p>
-                To become a true arcade champion, master our dynamic Combo System. When you consume multiple fruits in quick succession, the combo timer stays active and your score multiplier increases. In addition, as your combo grows, our custom audio engine dynamically pitches up the synthesizer tones, creating an incredibly satisfying musical crescendo as you play!
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-lg font-extrabold text-violet-600 dark:text-violet-400 mb-2 flex items-center gap-2">
-                🎨 5. 10+ Premium Hand-Crafted Skins & Customization
-              </h3>
-              <p>
-                Express your personality with our state-of-the-art skin selector! We feature over 10 premium, hand-crafted skins, including Neon Glow, Cosmic Space, Mystic Dragon, Rainbow Spectrum, Candy Swirl, Tiger Stripes, Golden Luster, and Phantom Specter. Each skin features uniquely rendered gradients, textures, and custom snake heads that render beautifully on the HTML5 canvas.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-lg font-extrabold text-violet-600 dark:text-violet-400 mb-2 flex items-center gap-2">
-                🔊 6. Real-Time Web Audio Synthesizer & Physics Vibration
-              </h3>
-              <p>
-                Without downloading heavy static audio files, this game leverages your browser's native Web Audio API to synthesize custom wave sound effects in real-time. When the snake slithers, eats, clears a level, or collides with an obstacle, the audio node constructs precise wave synthesis (Sine, Square, Triangle, and Sawtooth) on-the-fly. Coupled with fluid camera shakes and blast debris, players get a tactile console-like experience.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-lg font-extrabold text-violet-600 dark:text-violet-400 mb-2 flex items-center gap-2">
-                🔒 7. 100% Client-Side Privacy & Secure Storage
-              </h3>
-              <p>
-                We respect your privacy completely. Slinky Snake Adventures 2D runs entirely on the client side; no emails, personal records, IP addresses, or gameplay statistics are ever transmitted to any external server. Your unlocked achievements, highscores, and selected skins are securely saved in your browser's local storage (LocalStorage), allowing you to pick up exactly where you left off!
-              </p>
-            </div>
-
-            {/* Bottom of Right Column Ad */}
-            <AdsterraBanner adKey="4923cc907dacca0d26355c8f49f110ed" width={160} height={600} />
+          <div>
+            <h3 className="text-lg font-extrabold text-violet-600 dark:text-violet-400 mb-2 flex items-center gap-2">
+              🌍 2. A Journey Through Two Exciting Game Modes
+            </h3>
+            <p>
+              Our website provides players with two distinctly engineered gameplay experiences to suit their style:
+            </p>
+            <ul className="list-disc list-inside ml-2 mt-1 flex flex-col gap-1.5">
+              <li>
+                <strong className="text-slate-800 dark:text-slate-100">Classic Mode:</strong> An endless, pure highscore challenge with no boundaries. As you consume succulent fruits, your length and score grow indefinitely. Can you survive long enough to shatter your own legendary highscore? This mode is a true test of focus, hand-eye coordination, and swift reaction times.
+              </li>
+              <li>
+                <strong className="text-slate-800 dark:text-slate-100">Level Mode:</strong> Embark on an adventurous campaign across {LEVEL_CONFIGS.length} magical worlds. Each world introduces unique obstacle configurations, increasing complexity, and a required target score to successfully enter the next gate. Every single level features its own gorgeous color theme and atmospheric background.
+              </li>
+            </ul>
           </div>
+
+          <div>
+            <h3 className="text-lg font-extrabold text-violet-600 dark:text-violet-400 mb-2 flex items-center gap-2">
+              🍓 3. A Feast of 10+ Delicious Fruits & Super-Foods
+            </h3>
+            <p>
+              Instead of traditional simple dots, Slinky Snake features a rich, colorful menu of over 10 varieties of juicy fruits and magical powerups. Each edible item possesses a specific point value, a customized particle explosion effect, and a physical/score impact on the game:
+            </p>
+            <ul className="list-disc list-inside ml-2 mt-1 flex flex-col gap-1">
+              <li><strong>Juicy Apple:</strong> +10 points - Classic and reliable food.</li>
+              <li><strong>Slippery Banana:</strong> +12 points - Easy to consume and highly satisfying.</li>
+              <li><strong>Purple Grape:</strong> +15 points - Temporarily slows down the snake for 6 seconds to let you navigate complex narrow turns safely.</li>
+              <li><strong>Spicy Chili:</strong> +15 points - Increases the snake speed and doubles your combo multiplier score for 8 seconds!</li>
+              <li><strong>Golden Pineapple:</strong> +18 points - Explodes with a tropical particle burst.</li>
+              <li><strong>Hard Coconut:</strong> +20 points - Crunchy shockwave that gently shakes the game board.</li>
+              <li><strong>Golden Star:</strong> +25 points - Sparkling visual trail and triggers a double multiplier.</li>
+              <li><strong>Watermelon:</strong> +30 points - Explosive juice splatter with intense screen vibration!</li>
+              <li><strong>Rainbow Cake:</strong> +40 points - Immediately appends 2 extra segments to your length.</li>
+              <li><strong>Dragon Fruit:</strong> +50 points - Extremely rare mystical food that releases magical purple glow sparks.</li>
+              <li><strong>Magical Blue Booster:</strong> +50 points - Laboratory elixir that grants high velocity decaying slowly over 10 seconds.</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-lg font-extrabold text-violet-600 dark:text-violet-400 mb-2 flex items-center gap-2">
+              ⚡ 4. Dynamic Combo Multipliers & Musical Tones
+            </h3>
+            <p>
+              To become a true arcade champion, master our dynamic Combo System. When you consume multiple fruits in quick succession, the combo timer stays active and your score multiplier increases. In addition, as your combo grows, our custom audio engine dynamically pitches up the synthesizer tones, creating an incredibly satisfying musical crescendo as you play!
+            </p>
+          </div>
+
+          <div>
+            <h3 className="text-lg font-extrabold text-violet-600 dark:text-violet-400 mb-2 flex items-center gap-2">
+              🎨 5. 10+ Premium Hand-Crafted Skins & Customization
+            </h3>
+            <p>
+              Express your personality with our state-of-the-art skin selector! We feature over 10 premium, hand-crafted skins, including Neon Glow, Cosmic Space, Mystic Dragon, Rainbow Spectrum, Candy Swirl, Tiger Stripes, Golden Luster, and Phantom Specter. Each skin features uniquely rendered gradients, textures, and custom snake heads that render beautifully on the HTML5 canvas.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="text-lg font-extrabold text-violet-600 dark:text-violet-400 mb-2 flex items-center gap-2">
+              🔊 6. Real-Time Web Audio Synthesizer & Physics Vibration
+            </h3>
+            <p>
+              Without downloading heavy static audio files, this game leverages your browser's native Web Audio API to synthesize custom wave sound effects in real-time. When the snake slithers, eats, clears a level, or collides with an obstacle, the audio node constructs precise wave synthesis (Sine, Square, Triangle, and Sawtooth) on-the-fly. Coupled with fluid camera shakes and blast debris, players get a tactile console-like experience.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="text-lg font-extrabold text-violet-600 dark:text-violet-400 mb-2 flex items-center gap-2">
+              🔒 7. 100% Client-Side Privacy & Secure Storage
+            </h3>
+            <p>
+              We respect your privacy completely. Slinky Snake Adventures 2D runs entirely on the client side; no emails, personal records, IP addresses, or gameplay statistics are ever transmitted to any external server. Your unlocked achievements, highscores, and selected skins are securely saved in your browser's local storage (LocalStorage), allowing you to pick up exactly where you left off!
+            </p>
+          </div>
+
         </div>
 
         {/* Dynamic Tips Alert Box */}

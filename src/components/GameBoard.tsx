@@ -284,16 +284,35 @@ export default function GameBoard({
         setIsLizardPaused(false);
         setIsLizardDelay(false);
         
-        // Adjust head coordinates if it was out of borders
+        // Adjust head coordinates and set safe directions away from borders
         const currentSnake = [...snakeRef.current];
         if (currentSnake.length > 0) {
           const head = currentSnake[0];
+          let newDir: Direction = directionRef.current;
+          
+          if (head.x <= 0 && newDir === 'LEFT') {
+            head.x = 0;
+            newDir = 'RIGHT';
+          } else if (head.x >= GRID_SIZE - 1 && newDir === 'RIGHT') {
+            head.x = GRID_SIZE - 1;
+            newDir = 'LEFT';
+          } else if (head.y <= 0 && newDir === 'UP') {
+            head.y = 0;
+            newDir = 'DOWN';
+          } else if (head.y >= GRID_SIZE - 1 && newDir === 'DOWN') {
+            head.y = GRID_SIZE - 1;
+            newDir = 'UP';
+          }
+          
           if (head.x < 0) head.x = 0;
           if (head.x >= GRID_SIZE) head.x = GRID_SIZE - 1;
           if (head.y < 0) head.y = 0;
           if (head.y >= GRID_SIZE) head.y = GRID_SIZE - 1;
+          
           setSnake(currentSnake);
           snakeRef.current = currentSnake;
+          setDirection(newDir);
+          directionRef.current = newDir;
         }
       } else {
         setCountdown(count);
@@ -640,8 +659,8 @@ export default function GameBoard({
       nextHead.y < 0 ||
       nextHead.y >= GRID_SIZE
     ) {
-      if (activeMode === 'CLASSIC') {
-        // Classic wraps around
+      if (activeMode === 'CLASSIC' || activeEffectsRef.current.immortal > 0) {
+        // Classic wraps around OR immortal wraps around
         nextHead.x = (nextHead.x + GRID_SIZE) % GRID_SIZE;
         nextHead.y = (nextHead.y + GRID_SIZE) % GRID_SIZE;
       } else {
@@ -2420,6 +2439,58 @@ export default function GameBoard({
                 </div>
               </div>
             )}
+
+            {showRespawnMenu && (
+              <div className="absolute inset-0 bg-slate-950/90 backdrop-blur-sm flex flex-col items-center justify-center p-4 z-30 select-none animate-fade-in">
+                <div className="bg-slate-900/95 border-4 border-red-500 rounded-3xl p-5 max-w-sm w-full text-center shadow-[0_20px_50px_rgba(0,0,0,0.8)] relative">
+                  
+                  {/* Out effect */}
+                  <span className="text-5xl animate-bounce block mb-2">🌋</span>
+                  <h2 className="text-xl sm:text-2xl font-black text-red-500 uppercase tracking-wider mb-1">
+                    Game Over!
+                  </h2>
+                  <p className="text-[10px] text-slate-300 font-bold mb-5 uppercase tracking-tight">
+                    Snake Size: <span className="text-emerald-400 font-black">{snake.length}</span> | Score: <span className="text-violet-400 font-black">{score}</span>
+                  </p>
+
+                  {/* Option Buttons Row */}
+                  <div className="grid grid-cols-2 gap-4">
+                    {/* Respawn Button (Diamond + Ad Tag) */}
+                    <button
+                      onClick={handleRespawnClick}
+                      className="group relative flex flex-col items-center justify-center p-4 bg-gradient-to-b from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 border-4 border-amber-600 rounded-2xl shadow-[0_4px_0_#D97706] active:translate-y-1 active:shadow-none transition-all cursor-pointer text-slate-950"
+                    >
+                      {/* AD Tag */}
+                      <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-rose-500 text-white font-black text-[7px] px-2 py-0.5 rounded-full border border-rose-600 shadow-md animate-pulse">
+                        AD
+                      </span>
+                      <Gem className="w-8 h-8 text-slate-950 group-hover:scale-110 transition-transform mb-1.5" />
+                      <span className="text-xs font-black uppercase tracking-wide">
+                        Respawn
+                      </span>
+                      <span className="text-[8px] font-bold text-amber-950 mt-0.5 leading-none">
+                        Continue Here!
+                      </span>
+                    </button>
+
+                    {/* Restart Button (Arrow Circle) */}
+                    <button
+                      onClick={handleRestartClick}
+                      className="group flex flex-col items-center justify-center p-4 bg-gradient-to-b from-emerald-400 to-emerald-500 hover:from-emerald-300 hover:to-emerald-400 border-4 border-emerald-600 rounded-2xl shadow-[0_4px_0_#059669] active:translate-y-1 active:shadow-none transition-all cursor-pointer text-slate-950"
+                    >
+                      <RotateCcw className="w-8 h-8 text-slate-950 group-hover:rotate-180 transition-transform duration-500 mb-1.5" />
+                      <span className="text-xs font-black uppercase tracking-wide">
+                        Restart
+                      </span>
+                      <span className="text-[8px] font-bold text-emerald-950 mt-0.5 leading-none">
+                        New Game!
+                      </span>
+                    </button>
+                  </div>
+
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Scoreboard bezel */}
@@ -2463,16 +2534,16 @@ export default function GameBoard({
         {/* BOTTOM KEYS PANEL - controller wala screen ke miche likhna */}
         <div className="w-full max-w-[75vh] bg-slate-950 border border-slate-800 text-slate-300 py-1.5 px-3 rounded-xl shadow-lg mt-2 flex justify-around items-center text-[10px] sm:text-[11px] font-bold">
           <span className="flex items-center gap-1">
-            <kbd className="bg-slate-900 text-amber-400 border border-slate-800 px-1 py-0.2 rounded font-mono">W</kbd> / <kbd className="bg-slate-900 text-amber-400 border border-slate-800 px-1 py-0.2 rounded font-mono">↑</kbd> Go Up (ऊपर जाने के लिए)
+            <kbd className="bg-slate-900 text-amber-400 border border-slate-800 px-1 py-0.2 rounded font-mono">W</kbd> / <kbd className="bg-slate-900 text-amber-400 border border-slate-800 px-1 py-0.2 rounded font-mono">↑</kbd> Go Up
           </span>
           <span className="flex items-center gap-1">
-            <kbd className="bg-slate-900 text-amber-400 border border-slate-800 px-1 py-0.2 rounded font-mono">S</kbd> / <kbd className="bg-slate-900 text-amber-400 border border-slate-800 px-1 py-0.2 rounded font-mono">↓</kbd> Go Down (नीचे जाने के लिए)
+            <kbd className="bg-slate-900 text-amber-400 border border-slate-800 px-1 py-0.2 rounded font-mono">S</kbd> / <kbd className="bg-slate-900 text-amber-400 border border-slate-800 px-1 py-0.2 rounded font-mono">↓</kbd> Go Down
           </span>
           <span className="flex items-center gap-1">
-            <kbd className="bg-slate-900 text-amber-400 border border-slate-800 px-1 py-0.2 rounded font-mono">A</kbd> / <kbd className="bg-slate-900 text-amber-400 border border-slate-800 px-1 py-0.2 rounded font-mono">←</kbd> Go Left (बाएँ जाने के लिए)
+            <kbd className="bg-slate-900 text-amber-400 border border-slate-800 px-1 py-0.2 rounded font-mono">A</kbd> / <kbd className="bg-slate-900 text-amber-400 border border-slate-800 px-1 py-0.2 rounded font-mono">←</kbd> Go Left
           </span>
           <span className="flex items-center gap-1">
-            <kbd className="bg-slate-900 text-amber-400 border border-slate-800 px-1 py-0.2 rounded font-mono">D</kbd> / <kbd className="bg-slate-900 text-amber-400 border border-slate-800 px-1 py-0.2 rounded font-mono">→</kbd> Go Right (दाएँ जाने के लिए)
+            <kbd className="bg-slate-900 text-amber-400 border border-slate-800 px-1 py-0.2 rounded font-mono">D</kbd> / <kbd className="bg-slate-900 text-amber-400 border border-slate-800 px-1 py-0.2 rounded font-mono">→</kbd> Go Right
           </span>
         </div>
       </div>
@@ -2801,7 +2872,7 @@ export default function GameBoard({
                 {/* Out effect */}
                 <span className="text-5xl animate-bounce block mb-2">🌋</span>
                 <h2 className="text-xl sm:text-2xl font-black text-red-500 uppercase tracking-wider mb-1">
-                  Achanak Out Ho Gye!
+                  Game Over!
                 </h2>
                 <p className="text-[10px] text-slate-300 font-bold mb-5 uppercase tracking-tight">
                   Snake Size: <span className="text-emerald-400 font-black">{snake.length}</span> | Score: <span className="text-violet-400 font-black">{score}</span>
@@ -2823,7 +2894,7 @@ export default function GameBoard({
                       Respawn
                     </span>
                     <span className="text-[8px] font-bold text-amber-950 mt-0.5 leading-none">
-                      Yahi Se Shuru!
+                      Continue Here!
                     </span>
                   </button>
 
@@ -2837,7 +2908,7 @@ export default function GameBoard({
                       Restart
                     </span>
                     <span className="text-[8px] font-bold text-emerald-950 mt-0.5 leading-none">
-                      Naya Game!
+                      New Game!
                     </span>
                   </button>
                 </div>
